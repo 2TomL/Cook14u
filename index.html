@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cook14u - Home</title>
+    <link rel="icon" type="image/png" href="assets/Cook14U_Logo_ProfilePic_X_2160x2160_openeyes.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="#home">
+            <img src="assets/Cook14U_Logo_ProfilePic_X_2160x2160.png" alt="Cook14u Logo" class="logo">
+        </a>
+        <div id="hamburger-menu" class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#content">Content</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#merch">Merch/Support</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <div class="skull-container">
+                <canvas id="fireCanvas"></canvas>
+                <img src="assets/Cook14U_Logo_ProfilePic_X_2160x2160_openeyes.png" alt="Cook14u Logo" class="home-logo">
+            </div>
+            <h1>Cook14u</h1>
+            <p>Welcome to the community! Join us for fun gaming.</p>
+        </section>
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-setup">
+                <div class="card about-card">
+                    <h3>About Me</h3>
+                    <div class="media">
+                        <img src="assets/about1.png" alt="About Cook14u">
+                    </div>
+                    <p>I'm a lifelong gamer, I started streaming on <a href="https://twitch.tv/cook14u" target="_blank" rel="noopener">Twitch.tv/cook14u</a> just to be able to watch my gameplay in hopes of improving... It turned into this growing community I am very much blessed to be a part of. Mostly on Warzone but I play some of mostly everything... There's some laughs, there's some pains, but mostly the channel revolves around self reflecting to improve.</p>
+                </div>
+                
+                <div class="card setup-card">
+                    <h3>My Setup</h3>
+                    <div class="media">
+                        <img src="assets/desktop.jpg" alt="My Setup">
+                    </div>
+                    <ul>
+                        <li><strong>Gaming:</strong> MSI 4070Ti, Ryzen 7 5800X3D, 32GB TridentZ</li>
+                        <li><strong>Monitor:</strong> 27" Koorui 1440p 240Hz 1ms</li>
+                        <li><strong>Audio:</strong> GO-XLR Mini, Streamdeck</li>
+                        <li><strong>Streaming:</strong> RTX 3060Ti, Ryzen 9 3900X</li>
+                        <li><strong>Mic:</strong> Shure MV7x XLR</li>
+                        <li><strong>Camera:</strong> Insta360 Link 4K Webcam</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="content">
+            <h2>Content</h2>
+            <div class="options">
+                <div class="option option-twitch active">
+                    <div class="shadow"></div>
+                    <div class="label">
+                        <div class="icon">
+                            <i class="fab fa-twitch"></i>
+                        </div>
+                        <div class="info">
+                            <div class="main">Twitch</div>
+                            <div class="sub">Live streams & VODs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option option-youtube">
+                    <div class="shadow"></div>
+                    <div class="label">
+                        <div class="icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="info">
+                            <div class="main">YouTube</div>
+                            <div class="sub">Gaming videos</div>
+                        </div>
+                    </div>
+                    <div class="content-embed">
+                        <button class="video-nav prev-video" aria-label="Previous video" data-platform="youtube">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="video-container">
+                            <iframe class="video-frame active" width="100%" height="315" src="https://www.youtube.com/embed/CjXdp7J_yEs?enablejsapi=1&origin=http://localhost&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+                            <iframe class="video-frame" width="100%" height="315" src="https://www.youtube.com/embed/_s7S_WybcRM?enablejsapi=1&origin=http://localhost&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+                        </div>
+                        <button class="video-nav next-video" aria-label="Next video" data-platform="youtube">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="option option-instagram">
+                    <div class="shadow"></div>
+                    <div class="label">
+                        <div class="icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="info">
+                            <div class="main">Instagram</div>
+                            <div class="sub">Highlights & clips</div>
+                        </div>
+                    </div>
+                    <div class="content-embed instagram-grid">
+                        <button class="video-nav prev-video" aria-label="Previous photo" data-platform="instagram">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="instagram-photos">
+                            <img class="insta-photo active" src="assets/insta1.jpg" alt="Instagram photo 1">
+                            <img class="insta-photo" src="assets/insta2.jpg" alt="Instagram photo 2">
+                            <img class="insta-photo" src="assets/insta3.jpg" alt="Instagram photo 3">
+                            <img class="insta-photo" src="assets/insta4.jpg" alt="Instagram photo 4">
+                            <img class="insta-photo" src="assets/insta5.jpg" alt="Instagram photo 5">
+                        </div>
+                        <button class="video-nav next-video" aria-label="Next photo" data-platform="instagram">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="option option-tiktok">
+                    <div class="shadow"></div>
+                    <div class="label">
+                        <div class="icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="info">
+                            <div class="main">TikTok</div>
+                            <div class="sub">Short form content</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-navigation">
+                <button class="nav-dot active" data-option="0" aria-label="Twitch"><i class="fab fa-twitch"></i></button>
+                <button class="nav-dot" data-option="1" aria-label="YouTube"><i class="fab fa-youtube"></i></button>
+                <button class="nav-dot" data-option="2" aria-label="Instagram"><i class="fab fa-instagram"></i></button>
+                <button class="nav-dot" data-option="3" aria-label="TikTok"><i class="fab fa-tiktok"></i></button>
+            </div>
+            <div class="platform-link-container">
+                <a href="https://www.twitch.tv/cook14u" target="_blank" rel="noopener" class="platform-link active" data-platform="twitch">
+                    <i class="fab fa-twitch"></i> Visit my Twitch
+                </a>
+                <a href="https://www.youtube.com/@Cook14u" target="_blank" rel="noopener" class="platform-link" data-platform="youtube">
+                    <i class="fab fa-youtube"></i> Visit my YouTube
+                </a>
+                <a href="https://www.instagram.com/cook14u2/" target="_blank" rel="noopener" class="platform-link" data-platform="instagram">
+                    <i class="fab fa-instagram"></i> Visit my Instagram
+                </a>
+                <a href="https://www.tiktok.com/@cook14u2" target="_blank" rel="noopener" class="platform-link" data-platform="tiktok">
+                    <i class="fab fa-tiktok"></i> Visit my TikTok
+                </a>
+            </div>
+        </section>
+        <section id="community">
+            <h2>Community</h2>
+            <div class="discord-container">
+                <div class="card discord-card">
+                    <h3>Join Our Discord Community</h3>
+                    <p>Be a part of our positive and supportive gaming community. Share your experiences, connect with others, and stay up to date!</p>
+                    <div class="discord-widget">
+                        <iframe src="https://discord.com/widget?id=842437277594026045&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="Discord Widget"></iframe>
+                    </div>
+                    <a href="https://discord.com/channels/842437277594026045/910132722767372368" target="_blank" rel="noopener" class="discord-link">
+                        <i class="fab fa-discord"></i>
+                        Open Discord Channel
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="merch">
+            <h2>Merch / Support</h2>
+            <p>Support the channel and check out our merch! More info coming soon.</p>
+        </section>
+    </main>
+    <footer>
+        <p>Made by <a href="https://2toml.github.io/TL_Final/" target="_blank" rel="noopener">Tom Lamers</a> 2025.</p>
+    </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" src="app.js"></script>
+</body>
+</html>

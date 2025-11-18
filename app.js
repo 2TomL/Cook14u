@@ -321,6 +321,9 @@ if (fireCanvas) {
 
   const particles = [];
   const particleCount = 100;
+  const fireworkParticles = [];
+  let showFireworks = true;
+  let fireworkStartTime = Date.now();
 
   class FireParticle {
     constructor() {
@@ -386,9 +389,85 @@ if (fireCanvas) {
     particles.push(new FireParticle());
   }
 
+  // Firework particle class
+  class FireworkParticle {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 8;
+      this.vy = (Math.random() - 0.5) * 8;
+      this.life = 1;
+      this.decay = 0.015 + Math.random() * 0.01;
+      this.size = 2 + Math.random() * 3;
+      this.color = color;
+      this.gravity = 0.1;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += this.gravity;
+      this.vx *= 0.98;
+      this.life -= this.decay;
+    }
+
+    draw() {
+      const alpha = this.life;
+      ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Create firework burst
+  function createFireworkBurst(x, y) {
+    const colors = [
+      {r: 255, g: 100, b: 0},   // Orange
+      {r: 255, g: 200, b: 0},   // Yellow
+      {r: 255, g: 50, b: 50},   // Red
+      {r: 255, g: 255, b: 100}, // Light yellow
+    ];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    for (let i = 0; i < 40; i++) {
+      fireworkParticles.push(new FireworkParticle(x, y, color));
+    }
+  }
+
+  // Initial firework bursts around the logo
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      const angle = (i / 8) * Math.PI * 2;
+      const radius = fireCanvas.width * 0.25;
+      const x = fireCanvas.width / 2 + Math.cos(angle) * radius;
+      const y = fireCanvas.height / 2 + Math.sin(angle) * radius;
+      createFireworkBurst(x, y);
+    }, i * 150);
+  }
+
   function animateFire() {
     ctx.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
     
+    // Check if 3 seconds have passed
+    if (Date.now() - fireworkStartTime > 3000) {
+      showFireworks = false;
+    }
+    
+    // Draw fireworks
+    if (showFireworks) {
+      for (let i = fireworkParticles.length - 1; i >= 0; i--) {
+        const particle = fireworkParticles[i];
+        particle.update();
+        particle.draw();
+        
+        if (particle.life <= 0) {
+          fireworkParticles.splice(i, 1);
+        }
+      }
+    }
+    
+    // Draw fire particles
     particles.forEach(particle => {
       particle.update();
       particle.draw();

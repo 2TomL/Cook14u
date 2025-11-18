@@ -90,6 +90,21 @@ header > a {
     margin-bottom: 30px;
     transition: transform 0.3s ease;
     cursor: pointer;
+    animation: logoGrowIn 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes logoGrowIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .skull-container:hover {

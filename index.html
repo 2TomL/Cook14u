@@ -17,6 +17,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
+        
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -27,13 +28,53 @@
             </ul>
         </nav>
     </header>
+    <button id="tools-button" class="tools-btn" aria-label="Tools">
+        <img src="assets/tracker.png" alt="COD Tracker Logo" class="app-logo-btn" />
+    </button>
+    <button id="codmunity-button" class="codmunity-btn" aria-label="CODmunity">
+        <img src="assets/codmunity.png" alt="CODmunity Logo" class="app-logo-btn" />
+    </button>
+    <button id="wzmeta-button" class="wzmeta-btn" aria-label="Warzone Meta">
+        <img src="assets/wzstats.png" alt="Warzone Meta Logo" class="app-logo-btn" />
+    </button>
+        <div id="wzmeta-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" id="close-wzmeta">&times;</span>
+                <h2>Warzone Meta App</h2>
+                <iframe src="https://wzstats.gg/en" width="100%" height="500" class="wzmeta-iframe" title="Warzone Meta App"></iframe>
+            </div>
+        </div>
+    <div id="tools-panel" class="tools-panel">
+        <button class="close-panel" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3>COD Tracker</h3>
+        <div class="tracker-content">
+            <iframe src="https://cod.tracker.gg/warzone/loadouts" width="100%" height="100%" frameborder="0" title="COD Tracker Loadout"></iframe>
+        </div>
+    </div>
+    <div id="codtracker-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-codtracker">&times;</span>
+            <h2>COD Tracker</h2>
+            <iframe src="https://cod.tracker.gg/warzone/loadouts" width="100%" height="500" class="codtracker-iframe" title="COD Tracker Warzone Loadouts"></iframe>
+        </div>
+    </div>
+
+    <div id="codmunity-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-codmunity">&times;</span>
+            <h2>CODmunity App</h2>
+            <iframe src="https://codmunity.gg/app" width="100%" height="500" class="codmunity-iframe" title="CODmunity App"></iframe>
+        </div>
+    </div>
     <main>
         <section id="home">
             <div class="skull-container">
                 <canvas id="fireCanvas"></canvas>
                 <img src="assets/Cook14U_Logo_ProfilePic_X_2160x2160_openeyes.png" alt="Cook14u Logo" class="home-logo">
             </div>
-            <h1>Cook14u</h1>
+            <h1>Cook<span class="cook14-green">14</span>u</h1>
             <p>Welcome to the community! Join us for fun gaming.</p>
         </section>
         <section id="about">
@@ -65,6 +106,7 @@
         </section>
         <section id="content">
             <h2>Content</h2>
+            <canvas id="contentSparkCanvas"></canvas>
             <div class="options">
                 <div class="option option-twitch active">
                     <div class="shadow"></div>

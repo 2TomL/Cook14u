@@ -1,3 +1,69 @@
+// Warzone Meta modal logic
+document.addEventListener('DOMContentLoaded', function() {
+  const wzmetaBtn = document.getElementById('wzmeta-button');
+  const wzmetaModal = document.getElementById('wzmeta-modal');
+  const closeWzmeta = document.getElementById('close-wzmeta');
+
+  if (wzmetaBtn && wzmetaModal && closeWzmeta) {
+    wzmetaBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      wzmetaModal.classList.add('active');
+    });
+    closeWzmeta.addEventListener('click', function() {
+      wzmetaModal.classList.remove('active');
+    });
+    // Optional: close modal when clicking outside content
+    wzmetaModal.addEventListener('click', function(e) {
+      if (e.target === wzmetaModal) {
+        wzmetaModal.classList.remove('active');
+      }
+    });
+  }
+});
+// CODmunity modal logic
+document.addEventListener('DOMContentLoaded', function() {
+  const codmunityBtn = document.getElementById('codmunity-button');
+  const codmunityModal = document.getElementById('codmunity-modal');
+  const closeCodmunity = document.getElementById('close-codmunity');
+
+  if (codmunityBtn && codmunityModal && closeCodmunity) {
+    codmunityBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      codmunityModal.classList.add('active');
+    });
+    closeCodmunity.addEventListener('click', function() {
+      codmunityModal.classList.remove('active');
+    });
+    // Optional: close modal when clicking outside content
+    codmunityModal.addEventListener('click', function(e) {
+      if (e.target === codmunityModal) {
+        codmunityModal.classList.remove('active');
+      }
+    });
+  }
+});
+// COD Tracker modal logic
+document.addEventListener('DOMContentLoaded', function() {
+  const toolsBtn = document.getElementById('tools-button');
+  const codModal = document.getElementById('codtracker-modal');
+  const closeCodModal = document.getElementById('close-codtracker');
+
+  if (toolsBtn && codModal && closeCodModal) {
+    toolsBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      codModal.classList.add('active');
+    });
+    closeCodModal.addEventListener('click', function() {
+      codModal.classList.remove('active');
+    });
+    // Optional: close modal when clicking outside content
+    codModal.addEventListener('click', function(e) {
+      if (e.target === codModal) {
+        codModal.classList.remove('active');
+      }
+    });
+  }
+});
 // Three.js animated background with logo and smoke
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js';
 
@@ -219,6 +285,97 @@ function animate() {
 init();
 animate();
 
+// Content card spark effect
+const sparkCanvas = document.getElementById('contentSparkCanvas');
+let sparkCtx, sparkParticles = [];
+let createSparkBurst;
+
+if (sparkCanvas) {
+  sparkCtx = sparkCanvas.getContext('2d');
+  
+  function resizeSparkCanvas() {
+    const contentSection = document.getElementById('content');
+    if (contentSection) {
+      sparkCanvas.width = contentSection.offsetWidth;
+      sparkCanvas.height = contentSection.offsetHeight;
+    }
+  }
+  resizeSparkCanvas();
+  window.addEventListener('resize', resizeSparkCanvas);
+
+  class SparkParticle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 6;
+      this.vy = (Math.random() - 0.5) * 6;
+      this.life = 1;
+      this.decay = 0.015 + Math.random() * 0.015;
+      this.size = 2 + Math.random() * 3;
+      this.gravity = 0.15;
+      const colors = [
+        {r: 255, g: 150, b: 0},
+        {r: 255, g: 200, b: 50},
+        {r: 255, g: 100, b: 0},
+      ];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += this.gravity;
+      this.vx *= 0.98;
+      this.life -= this.decay;
+    }
+
+    draw() {
+      const alpha = this.life;
+      sparkCtx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${alpha})`;
+      sparkCtx.beginPath();
+      sparkCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      sparkCtx.fill();
+    }
+  }
+
+  createSparkBurst = function(element) {
+    const rect = element.getBoundingClientRect();
+    const contentSection = document.getElementById('content');
+    const sectionRect = contentSection.getBoundingClientRect();
+    
+    // Calculate position relative to content section
+    const centerX = rect.left + rect.width / 2 - sectionRect.left;
+    const centerY = rect.top + rect.height / 2 - sectionRect.top;
+    
+    // Create sparks around the card
+    for (let i = 0; i < 50; i++) {
+      const angle = (Math.random() * Math.PI * 2);
+      const distance = Math.random() * 40 + rect.width / 3;
+      const x = centerX + Math.cos(angle) * distance;
+      const y = centerY + Math.sin(angle) * distance;
+      sparkParticles.push(new SparkParticle(x, y));
+    }
+  };
+
+  function animateSparks() {
+    sparkCtx.clearRect(0, 0, sparkCanvas.width, sparkCanvas.height);
+    
+    for (let i = sparkParticles.length - 1; i >= 0; i--) {
+      const particle = sparkParticles[i];
+      particle.update();
+      particle.draw();
+      
+      if (particle.life <= 0) {
+        sparkParticles.splice(i, 1);
+      }
+    }
+    
+    requestAnimationFrame(animateSparks);
+  }
+  
+  animateSparks();
+}
+
 // Content options interaction
 document.addEventListener('DOMContentLoaded', function() {
   const options = document.querySelectorAll('.option');
@@ -231,6 +388,11 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
       if (platformLinks[index]) {
         platformLinks[index].classList.add('active');
+      }
+      
+      // Create spark burst around clicked card
+      if (createSparkBurst) {
+        createSparkBurst(this);
       }
     });
   });
@@ -302,6 +464,11 @@ document.addEventListener('DOMContentLoaded', function() {
       options[optionIndex].classList.add('active');
       this.classList.add('active');
       platformLinks[optionIndex].classList.add('active');
+      
+      // Create spark burst around selected card
+      if (createSparkBurst && options[optionIndex]) {
+        createSparkBurst(options[optionIndex]);
+      }
     });
   });
 });
